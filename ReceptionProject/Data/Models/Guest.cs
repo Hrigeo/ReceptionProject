@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReceptionProject.Data.Join_Entity_s;
 using ReceptionProject.Data.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReceptionProject.Data.Models
 {
@@ -28,6 +30,8 @@ namespace ReceptionProject.Data.Models
         public string Address { get; set; }
         [Required]
         public DateTime BirthDate { get; set; }
+        [Required]
+        public List<GuestReservation> GuestReservations { get; set; }= new List<GuestReservation>();
 
 
     }

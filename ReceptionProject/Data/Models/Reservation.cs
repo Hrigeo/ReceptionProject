@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ReceptionProject.Data.Join_Entity_s;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReceptionProject.Data.Models
@@ -10,9 +11,14 @@ namespace ReceptionProject.Data.Models
         [Required]
         public DateTime ReservationStart { get; set; }
         public DateTime ReservationEnd { get; set; }
-        public List<Guest> RoomGuests { get; set; }
-        [ForeignKey(nameof(Room))]
-        public int RoomID { get; set; }
+        public List<GuestReservation> GuestReservations { get; set; }=new List<GuestReservation>();
+        [Required]
+        public int RoomId { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(RoomId))]
+        public Room Room { get; set; } = null!;
+
         public double TotalPrice { get; set; }
         public bool IsPaid { get; set; }
 
