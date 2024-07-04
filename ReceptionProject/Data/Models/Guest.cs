@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReceptionProject.Data.Join_Entity_s;
-using ReceptionProject.Data.Models;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using static ReceptionProject.Data.Constants.DataConstants;
 
 namespace ReceptionProject.Data.Models
 {
@@ -13,9 +12,11 @@ namespace ReceptionProject.Data.Models
         [Comment("Guest Identification")]
         public int Id { get; set; }
         [Required]
+        [MaxLength(NameLenght)]
         [Comment("First name of the guest")]
         public string FirstName { get; set; } = string.Empty;
         [Required]
+        [MaxLength(NameLenght)]
         [Comment("Last name of the Guest")]
         public string LastName { get; set; } = string.Empty;
         [Required]

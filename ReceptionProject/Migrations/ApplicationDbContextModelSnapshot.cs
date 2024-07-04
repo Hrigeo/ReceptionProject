@@ -10,7 +10,7 @@ using ReceptionProject.Data;
 
 namespace ReceptionProject.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ReceptionDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -267,17 +267,19 @@ namespace ReceptionProject.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    b.Property<double>("Salary")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
 
@@ -308,12 +310,14 @@ namespace ReceptionProject.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
                         .HasComment("First name of the guest");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
                         .HasComment("Last name of the Guest");
 
                     b.Property<string>("Phone")
@@ -372,8 +376,8 @@ namespace ReceptionProject.Migrations
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -403,8 +407,8 @@ namespace ReceptionProject.Migrations
                     b.Property<bool>("IsVacant")
                         .HasColumnType("bit");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<int>("RoomType")
                         .HasColumnType("int");
@@ -472,13 +476,13 @@ namespace ReceptionProject.Migrations
                     b.HasOne("ReceptionProject.Data.Models.Guest", "Guest")
                         .WithMany("GuestReservations")
                         .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ReceptionProject.Data.Models.Reservation", "Reservation")
                         .WithMany("GuestReservations")
                         .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Guest");
@@ -491,13 +495,13 @@ namespace ReceptionProject.Migrations
                     b.HasOne("ReceptionProject.Data.Models.InventoryItem", "InventoryItem")
                         .WithMany("RoomInventories")
                         .HasForeignKey("InventoryItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ReceptionProject.Data.Models.Room", "Room")
                         .WithMany("RoomInventories")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("InventoryItem");
@@ -510,7 +514,7 @@ namespace ReceptionProject.Migrations
                     b.HasOne("ReceptionProject.Data.Models.Room", "Room")
                         .WithMany("Reservations")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Room");

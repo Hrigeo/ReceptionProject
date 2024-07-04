@@ -1,6 +1,7 @@
 ﻿using ReceptionProject.Data.Join_Entity_s;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static ReceptionProject.Data.Constants.DataConstants;
 
 namespace ReceptionProject.Data.Models
 {
@@ -18,8 +19,9 @@ namespace ReceptionProject.Data.Models
         [Required]
         [ForeignKey(nameof(RoomId))]
         public Room Room { get; set; } = null!;
-
-        public double TotalPrice { get; set; }
+        [Required]
+        [Column(TypeName ="decimal(18,2)")]
+        public decimal TotalPrice { get; set; }
         public bool IsPaid { get; set; }
 
     }

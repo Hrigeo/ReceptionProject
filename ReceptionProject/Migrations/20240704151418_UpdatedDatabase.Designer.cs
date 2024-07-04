@@ -12,8 +12,8 @@ using ReceptionProject.Data;
 namespace ReceptionProject.Migrations
 {
     [DbContext(typeof(ReceptionDbContext))]
-    [Migration("20240703235011_RoomInventory")]
-    partial class RoomInventory
+    [Migration("20240704151418_UpdatedDatabase")]
+    partial class UpdatedDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,17 +269,19 @@ namespace ReceptionProject.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    b.Property<double>("Salary")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
 
@@ -310,12 +312,14 @@ namespace ReceptionProject.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
                         .HasComment("First name of the guest");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
                         .HasComment("Last name of the Guest");
 
                     b.Property<string>("Phone")
@@ -374,8 +378,8 @@ namespace ReceptionProject.Migrations
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -405,8 +409,8 @@ namespace ReceptionProject.Migrations
                     b.Property<bool>("IsVacant")
                         .HasColumnType("bit");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<int>("RoomType")
                         .HasColumnType("int");

@@ -1,5 +1,7 @@
 ﻿using ReceptionProject.Data.Enumerators;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using static ReceptionProject.Data.Constants.DataConstants;
 
 namespace ReceptionProject.Data.Models
 {
@@ -8,12 +10,15 @@ namespace ReceptionProject.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [MaxLength(NameLenght)]
         public string FirstName { get; set; }
         [Required]
+        [MaxLength(NameLenght)]
         public string LastName { get; set; }
         [Required]
         public EmployeeRole Role { get; set; }
         [Required]
-        public double Salary { get; set; }
+        [Column(TypeName = "decimal(7,2)")]
+        public decimal Salary { get; set; }
     }
 }

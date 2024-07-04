@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ReceptionProject.Data.Enumerators;
 using ReceptionProject.Data.Join_Entity_s;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using static ReceptionProject.Data.Constants.DataConstants;
 
 namespace ReceptionProject.Data.Models
 {
@@ -16,6 +18,8 @@ namespace ReceptionProject.Data.Models
         [Required]
         public int Capacity { get; set; }
         [Required]
+        [Column(TypeName = "decimal(7,2)")]
+        [Range(typeof(decimal), RoomPriceMinimum, RoomPriceMaximum, ConvertValueInInvariantCulture = true)]
         public double Price { get; set; }
         [Required]
         public RoomType RoomType { get; set; }
