@@ -23,12 +23,12 @@ namespace ReceptionProject.Data.Models
         [Comment("Shows if the guest is an Adult(Over 18)")]
         public bool isAdult { get; set; }
         [Comment("The e-mail of the guest")]
-        public string Email { get; set; }
-        [Comment("Phone number of the guest")]
-        public string Phone { get; set; }
+        public string Email { get; set; } = string.Empty;
+        [Comment("Phone number of the guest")] 
+        public string Phone { get; set; } = string.Empty;
         [Required]
         [Comment("The Address of the guest")]
-        public string Address { get; set; }
+        public string Address { get; set; } = string.Empty;
         [Required]
         public DateTime BirthDate { get; set; }
         [Required]

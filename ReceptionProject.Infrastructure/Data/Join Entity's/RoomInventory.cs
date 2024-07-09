@@ -10,12 +10,12 @@ namespace ReceptionProject.Data.Join_Entity_s
         public int RoomId { get; set; }
         [Required]
         [ForeignKey(nameof(RoomId))]
-        public Room Room { get; set; }
+        public Room Room { get; set; } = null!;
         [Required]
         public int InventoryItemId { get; set; }
         [Required]
         [ForeignKey(nameof(InventoryItemId))]
-        public InventoryItem InventoryItem { get; set; }
+        public InventoryItem InventoryItem { get; set; } = null!;
 
         public int Quantity { get; set; } // Quantity of the item in this room
     }
